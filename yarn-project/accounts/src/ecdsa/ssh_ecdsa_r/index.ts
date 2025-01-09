@@ -21,8 +21,8 @@ export { EcdsaRSSHAccountContract };
  * @param signingPublicKey - Secp2561 key used to identify its corresponding private key in the SSH Agent.
  * @param salt - Deployment salt.
  */
-export function getEcdsaRSSHAccount(pxe: PXE, secretKey: Fr, signingPublicKey: Buffer, salt?: Salt): AccountManager {
-  return new AccountManager(pxe, secretKey, new EcdsaRSSHAccountContract(signingPublicKey), salt);
+export function getEcdsaRSSHAccount(pxe: PXE, secretKey: Fr, signingPublicKey: Buffer, deployerAddress?: AztecAddress, salt?: Salt): AccountManager {
+  return new AccountManager(pxe, secretKey, new EcdsaRSSHAccountContract(signingPublicKey), deployerAddress, salt);
 }
 
 /**

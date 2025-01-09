@@ -21,8 +21,8 @@ export { EcdsaKAccountContract };
  * @param signingPrivateKey - Secp256k1 key used for signing transactions.
  * @param salt - Deployment salt.
  */
-export function getEcdsaKAccount(pxe: PXE, secretKey: Fr, signingPrivateKey: Buffer, salt?: Salt): AccountManager {
-  return new AccountManager(pxe, secretKey, new EcdsaKAccountContract(signingPrivateKey), salt);
+export function getEcdsaKAccount(pxe: PXE, secretKey: Fr, signingPrivateKey: Buffer, deployerAddress?: AztecAddress, salt?: Salt): AccountManager {
+  return new AccountManager(pxe, secretKey, new EcdsaKAccountContract(signingPrivateKey), deployerAddress, salt);
 }
 
 /**

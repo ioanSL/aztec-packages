@@ -26,9 +26,10 @@ export function getSchnorrAccount(
   pxe: PXE,
   secretKey: Fr,
   signingPrivateKey: GrumpkinScalar,
+  deployerAddress?: AztecAddress,
   salt?: Salt,
 ): AccountManager {
-  return new AccountManager(pxe, secretKey, new SchnorrAccountContract(signingPrivateKey), salt);
+  return new AccountManager(pxe, secretKey, new SchnorrAccountContract(signingPrivateKey), deployerAddress, salt);
 }
 
 /**

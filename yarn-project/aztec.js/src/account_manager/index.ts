@@ -1,6 +1,7 @@
 import { CompleteAddress, type PXE } from '@aztec/circuit-types';
 import { type ContractInstanceWithAddress, deriveKeys, getContractInstanceFromDeployParams } from '@aztec/circuits.js';
 import { Fr } from '@aztec/foundation/fields';
+import { AztecAddress } from '@aztec/aztec.js/addresses';
 
 import { type AccountContract } from '../account/contract.js';
 import { type Salt } from '../account/index.js';
@@ -30,7 +31,7 @@ export class AccountManager {
 
   private instance: ContractInstanceWithAddress;
 
-  constructor(private pxe: PXE, private secretKey: Fr, private accountContract: AccountContract, salt?: Salt) {
+  constructor(private pxe: PXE, private secretKey: Fr, private accountContract: AccountContract, private deployer?: AztecAddress, salt?: Salt) {
     this.salt = salt !== undefined ? new Fr(salt) : Fr.random();
 
     const { publicKeys } = deriveKeys(secretKey);
@@ -39,6 +40,7 @@ export class AccountManager {
       constructorArgs: this.accountContract.getDeploymentArgs(),
       salt: this.salt,
       publicKeys,
+      deployer: deployer ?? AztecAddress.ZERO,
     });
   }
 
